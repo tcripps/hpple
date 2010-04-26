@@ -35,7 +35,7 @@
 
 @interface TFHppleXMLTest : GTMTestCase
 {
-  TFHpple * doc;
+	TFHpple * doc;
 }
 @end
 
@@ -45,53 +45,54 @@
 
 - (void) setUp
 {
-  NSData * data = [NSData dataWithContentsOfFile:TEST_DOCUMENT_PATH];
-  doc = [[TFHpple alloc] initWithXMLData:data];
+	NSData * data = [NSData dataWithContentsOfFile:TEST_DOCUMENT_PATH];
+	doc = [[TFHpple alloc] initWithXMLData:data];
 }
 
 - (void) tearDown
 {
-  [doc release];
+	[doc release];
 }
 
 - (void) testInitializesWithXMLData
 {
-  STAssertNotNil(doc.data, nil);
-  STAssertEqualObjects([[doc class] description], @"TFHpple", nil);
+	STAssertNotNil(doc.data, nil);
+	STAssertEqualObjects([doc.class description], @"TFHpple", nil);
 }
 
 //  item/title,description,link
 - (void) testSearchesWithXPath
 {
-  NSArray * items = [doc search:@"//item"];
-  STAssertEquals((int)[items count], 0x0f, nil);
-
-  TFHppleElement * e = [items objectAtIndex:0];
-  STAssertEqualObjects([[e class] description], @"TFHppleElement", nil);
+	NSArray * items = [doc search:@"//item"];
+	STAssertEquals((int)[items count], 0x0f, nil);
+	
+	TFHppleElement * e = [items objectAtIndex:0];
+	STAssertEqualObjects([[e class] description], @"TFHppleElement", nil);
 }
 
 - (void) testFindsFirstElementAtXPath
 {
-  TFHppleElement * e = [doc at:@"//item/title"];
-
-  STAssertEqualObjects([e content], @"Objective-C for Rubyists", nil);
-  STAssertEqualObjects([e tagName], @"title", nil);
+	TFHppleElement * e = [doc at:@"//item/title"];
+	
+	STAssertEqualObjects(e.content, @"Objective-C for Rubyists", nil);
+	STAssertEqualObjects(e.name, @"title", nil);
 }
 
 - (void) testSearchesByNestedXPath
 {
-  NSArray * elements = [doc search:@"//item/title"];
-  STAssertEquals((int)[elements count], 0x0f, nil); 
- 
-  TFHppleElement * e = [elements objectAtIndex:0];
-  STAssertEqualObjects([e content], @"Objective-C for Rubyists", nil);
+	NSArray * elements = [doc search:@"//item/title"];
+	STAssertEquals((int) elements.count, 0x0f, nil); 
+	
+	TFHppleElement * e = [elements objectAtIndex:0];
+	NSLog(@"%@" ,e);
+	STAssertEqualObjects(e.content, @"Objective-C for Rubyists", nil);
 }
 
 - (void) testAtSafelyReturnsNilIfEmpty
 {
-  TFHppleElement * e = [doc at:@"//a[@class='sponsor']"];
-  
-  STAssertEqualObjects(e, nil, nil);
+	TFHppleElement * e = [doc at:@"//a[@class='sponsor']"];
+	
+	STAssertEqualObjects(e, nil, nil);
 }
 
 // Other Hpricot methods:

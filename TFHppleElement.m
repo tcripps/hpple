@@ -30,61 +30,30 @@
 
 #import "TFHppleElement.h"
 
-NSString * const TFHppleNodeContentKey           = @"nodeContent";
-NSString * const TFHppleNodeNameKey              = @"nodeName";
-NSString * const TFHppleNodeAttributeArrayKey    = @"nodeAttributeArray";
-NSString * const TFHppleNodeAttributeNameKey     = @"attributeName";
 
 @implementation TFHppleElement
 
-- (void) dealloc
-{
-  [node release];
 
-  [super dealloc];
-}
-
-- (id) initWithNode:(NSDictionary *) theNode
-{
-  if (!(self = [super init]))
-    return nil;
-
-  [theNode retain];
-  node = theNode;
-
-  return self;
-}
+@synthesize name;
+@synthesize content;
+@synthesize attributes;
+@synthesize childNodes;
 
 
-- (NSString *) content
-{
-  return [node objectForKey:TFHppleNodeContentKey];
+
+- (void) dealloc {
+	self.name = nil;
+	self.content= nil;
+	self.attributes = nil;
+	self.childNodes = nil;
+	[super dealloc];
 }
 
 
-- (NSString *) tagName
-{
-  return [node objectForKey:TFHppleNodeNameKey];
+- (id)description {
+	NSString *description = [NSString stringWithFormat:@"<Name: %@, Content: %@, Attributes: %@, ChildNodes: %@>", name, content, attributes, childNodes];
+	return description;
 }
 
-- (NSDictionary *) attributes
-{
-  NSMutableDictionary * translatedAttributes = [NSMutableDictionary dictionary];
-  for (NSDictionary * attributeDict in [node objectForKey:TFHppleNodeAttributeArrayKey]) {
-    [translatedAttributes setObject:[attributeDict objectForKey:TFHppleNodeContentKey]
-                             forKey:[attributeDict objectForKey:TFHppleNodeAttributeNameKey]];
-  }
-  return translatedAttributes;
-}
-
-- (NSString *) objectForKey:(NSString *) theKey
-{
-  return [[self attributes] objectForKey:theKey];
-}
-
-- (id) description
-{
-  return [node description];
-}
 
 @end

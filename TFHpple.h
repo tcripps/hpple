@@ -33,6 +33,8 @@
 #import "TFHppleElement.h"
 
 @interface TFHpple : NSObject {
+	
+@private
   NSData * data;
   BOOL isXML;
 }

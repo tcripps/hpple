@@ -34,7 +34,7 @@
 
 @interface TFHppleHTMLTest : GTMTestCase
 {
-  TFHpple * doc;
+	TFHpple * doc;
 }
 @end
 
@@ -44,61 +44,63 @@
 
 - (void) setUp
 {
-  NSData * data = [NSData dataWithContentsOfFile:TEST_DOCUMENT_PATH];
-  doc = [[TFHpple alloc] initWithHTMLData:data];
+	NSData * data = [NSData dataWithContentsOfFile:TEST_DOCUMENT_PATH];
+	doc = [[TFHpple alloc] initWithHTMLData:data];
 }
 
 - (void) tearDown
 {
-  [doc release];
+	[doc release];
 }
 
 - (void) testInitializesWithHTMLData
 {
-  STAssertNotNil(doc.data, nil);
-  STAssertEqualObjects([[doc class] description], @"TFHpple", nil);
+	STAssertNotNil(doc.data, nil);
+	STAssertEqualObjects([doc.class description], @"TFHpple", nil);
 }
 
 //  doc.search("//p[@class='posted']")
 - (void) testSearchesWithXPath
 {
-  NSArray * a = [doc search:@"//a[@class='sponsor']"];
-  STAssertEquals((int)[a count], 2, nil);
-
-  TFHppleElement * e = [a objectAtIndex:0];
-  STAssertEqualObjects([[e class] description], @"TFHppleElement", nil);
+	NSArray * a = [doc search:@"//a[@class='sponsor']"];
+	STAssertEquals((int) a.count, 2, nil);
+	
+	TFHppleElement * e = [a objectAtIndex:0];
+	STAssertEqualObjects([e.class description], @"TFHppleElement", nil);
 }
 
 - (void) testFindsFirstElementAtXPath
 {
-  TFHppleElement * e = [doc at:@"//a[@class='sponsor']"];
-
-  STAssertEqualObjects([e content], @"RailsMachine", nil);
-  STAssertEqualObjects([e tagName], @"a", nil);
+	TFHppleElement * e = [doc at:@"//a[@class='sponsor']"];
+	
+	STAssertEqualObjects(e.content, @"RailsMachine", nil);
+	STAssertEqualObjects(e.name, @"a", nil);
 }
 
 - (void) testSearchesByNestedXPath
 {
-  NSArray * a = [doc search:@"//div[@class='column']//strong"];
-  STAssertEquals((int)[a count], 5, nil);
-  
-  TFHppleElement * e = [a objectAtIndex:0];
-  STAssertEqualObjects([e content], @"PeepCode", nil);
+	NSArray * a = [doc search:@"//div[@class='column']//strong"];
+	STAssertEquals((int) a.count, 5, nil);
+	
+	TFHppleElement * e = [a objectAtIndex:0];
+	STAssertEqualObjects(e.content, @"PeepCode", nil);
 }
 
 - (void) testPopulatesAttributes
 {
-  TFHppleElement * e = [doc at:@"//a[@class='sponsor']"];
-  
-  STAssertEqualObjects([[[e attributes] class] description], @"NSCFDictionary", nil);
-  STAssertEqualObjects([[e attributes] objectForKey:@"href"], @"http://railsmachine.com/", nil);
+	TFHppleElement * e = [doc at:@"//a[@class='sponsor']"];
+	
+	STAssertEqualObjects([e.attributes.class description], @"NSCFDictionary", nil);
+	STAssertEqualObjects([e valueForKeyPath:@"attributes.href.content"], @"http://railsmachine.com/", nil);
 }
 
-- (void) testProvidesEasyAccessToAttributes
+- (void) testLongKeyPath
 {
-  TFHppleElement * e = [doc at:@"//a[@class='sponsor']"];
-  
-  STAssertEqualObjects([e objectForKey:@"href"], @"http://railsmachine.com/", nil);
+	NSArray * a = [doc search:@"//body/div"];
+	
+	// First <div>
+	TFHppleElement * e = [a objectAtIndex:0];
+	STAssertEqualObjects([e valueForKeyPath:@"childNodes.div[2].childNodes.div[1].childNodes.ul.childNodes.li.childNodes.span[1].attributes.class.content"], @"price", nil);
 }
 
 //  doc.at("body")['onload']

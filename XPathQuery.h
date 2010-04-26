@@ -6,5 +6,6 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
+
 NSArray *PerformHTMLXPathQuery(NSData *document, NSString *query);
 NSArray *PerformXMLXPathQuery(NSData *document, NSString *query);
