@@ -11,7 +11,6 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		26BB69871185988100462E35 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 26BB69861185988100462E35 /* libxml2.dylib */; };
 		26BB69AB11859AEB00462E35 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BB69A811859AEB00462E35 /* TFHpple.m */; };
 		26BB69AC11859AEB00462E35 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BB69AA11859AEB00462E35 /* TFHppleElement.m */; };
 		26BB69AF11859B0400462E35 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BB69AE11859B0400462E35 /* XPathQuery.m */; };
@@ -34,7 +33,6 @@
 		1D3623250D0F684500981E51 /* HppleAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HppleAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* Hpple.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hpple.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		26BB69861185988100462E35 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		26BB69A711859AEB00462E35 /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
 		26BB69A811859AEB00462E35 /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
 		26BB69A911859AEB00462E35 /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
@@ -70,7 +68,6 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				75D786360F34E8A600173CB6 /* libxml2.2.dylib in Frameworks */,
-				26BB69871185988100462E35 /* libxml2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,7 +142,6 @@
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
-				26BB69861185988100462E35 /* libxml2.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
