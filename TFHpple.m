@@ -35,7 +35,9 @@
 @synthesize data;
 
 - (void) dealloc {
-	self.data = nil;
+    [data release];
+	data = nil;
+    
 	[super dealloc];
 }
 
@@ -57,7 +59,7 @@
 
 // Returns all elements at xPath.
 - (NSArray *) search:(NSString *)xPathOrCSS {
-	
+    
 	NSArray * detailNodes;
 	if (isXML) {
 		detailNodes = PerformXMLXPathQuery(data, xPathOrCSS);
@@ -65,15 +67,15 @@
 	else {
 		detailNodes = PerformHTMLXPathQuery(data, xPathOrCSS);
 	}
-	
+    
 	return detailNodes;
 }
 
 // Returns first element at xPath
 - (TFHppleElement *) at:(NSString *)xPathOrCSS {
-	
+    
 	NSArray * elements = [self search:xPathOrCSS];
-	
+    
 	if ([elements count] >= 1) {
 		return [elements objectAtIndex:0];
 	}

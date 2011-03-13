@@ -30,7 +30,8 @@
 #import "GTMSenTestCase.h"
 #import "TFHpple.h"
 
-#define TEST_DOCUMENT_PATH @"UnitTesting/TestData/index.html"
+#define TEST_DOCUMENT_NAME @"index"
+#define TEST_DOCUMENT_TYPE @"html"
 
 @interface TFHppleHTMLTest : GTMTestCase
 {
@@ -44,7 +45,8 @@
 
 - (void) setUp
 {
-	NSData * data = [NSData dataWithContentsOfFile:TEST_DOCUMENT_PATH];
+    NSString *testDataFilePath = [[NSBundle mainBundle] pathForResource: TEST_DOCUMENT_NAME ofType: TEST_DOCUMENT_TYPE];
+	NSData * data = [NSData dataWithContentsOfFile: testDataFilePath];
 	doc = [[TFHpple alloc] initWithHTMLData:data];
 }
 
@@ -73,7 +75,7 @@
 {
 	TFHppleElement * e = [doc at:@"//a[@class='sponsor']"];
 	
-	STAssertEqualObjects(e.content, @"RailsMachine", nil);
+	STAssertEqualObjects([[[e childNodes] objectAtIndex: 0] content], @"RailsMachine", nil);
 	STAssertEqualObjects(e.name, @"a", nil);
 }
 
@@ -83,7 +85,7 @@
 	STAssertEquals((int) a.count, 5, nil);
 	
 	TFHppleElement * e = [a objectAtIndex:0];
-	STAssertEqualObjects(e.content, @"PeepCode", nil);
+	STAssertEqualObjects([[[e childNodes] objectAtIndex: 0] content], @"PeepCode", nil);
 }
 
 - (void) testPopulatesAttributes

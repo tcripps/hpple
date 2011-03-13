@@ -11,6 +11,11 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		1F4CCDCF132D551F000F6C92 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		1F4CCDD8132D55D4000F6C92 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BB69A811859AEB00462E35 /* TFHpple.m */; };
+		1F4CCDD9132D55D8000F6C92 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BB69AA11859AEB00462E35 /* TFHppleElement.m */; };
+		1F4CCDDA132D55E3000F6C92 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BB69AE11859B0400462E35 /* XPathQuery.m */; };
+		1F4CCDDB132D5749000F6C92 /* HppleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* HppleAppDelegate.m */; };
 		26BB69AB11859AEB00462E35 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BB69A811859AEB00462E35 /* TFHpple.m */; };
 		26BB69AC11859AEB00462E35 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BB69AA11859AEB00462E35 /* TFHppleElement.m */; };
 		26BB69AF11859B0400462E35 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BB69AE11859B0400462E35 /* XPathQuery.m */; };
@@ -175,8 +180,8 @@
 				75D785CE0F34E06F00173CB6 /* GTMSenTestCase.m */,
 				75D785CF0F34E06F00173CB6 /* GTMSenTestCase.h */,
 				75D785D00F34E06F00173CB6 /* GTMIPhoneUnitTestMain.m */,
-				75D785D10F34E06F00173CB6 /* GTMIPhoneUnitTestDelegate.m */,
 				75D785D20F34E06F00173CB6 /* GTMIPhoneUnitTestDelegate.h */,
+				75D785D10F34E06F00173CB6 /* GTMIPhoneUnitTestDelegate.m */,
 			);
 			name = GTM;
 			sourceTree = "<group>";
@@ -235,7 +240,11 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Hpple" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -261,6 +270,7 @@
 			files = (
 				26BB69CF11859E0000462E35 /* index.html in Resources */,
 				26BB69D111859E0800462E35 /* feed.rss in Resources */,
+				1F4CCDCF132D551F000F6C92 /* MainWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +299,9 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* HppleAppDelegate.m in Sources */,
+				1F4CCDD8132D55D4000F6C92 /* TFHpple.m in Sources */,
+				1F4CCDD9132D55D8000F6C92 /* TFHppleElement.m in Sources */,
+				1F4CCDDA132D55E3000F6C92 /* XPathQuery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +317,7 @@
 				26BB69AB11859AEB00462E35 /* TFHpple.m in Sources */,
 				26BB69AC11859AEB00462E35 /* TFHppleElement.m in Sources */,
 				26BB69AF11859B0400462E35 /* XPathQuery.m in Sources */,
+				1F4CCDDB132D5749000F6C92 /* HppleAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,7 +328,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Geoffrey Grosenbach";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -322,8 +336,8 @@
 				GCC_PREFIX_HEADER = Hpple_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = Hpple;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CD1F1B03-3E48-4552-ABEF-FDFFFA2F6956";
-				SDKROOT = iphoneos3.0;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -336,6 +350,7 @@
 				GCC_PREFIX_HEADER = Hpple_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = Hpple;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
@@ -344,6 +359,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -359,7 +375,8 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Test;
-				SDKROOT = iphoneos3.0;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -383,7 +400,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Test;
-				SDKROOT = iphoneos2.2.1;
+				SDKROOT = iphoneos;
 				ZERO_LINK = NO;
 			};
 			name = Release;

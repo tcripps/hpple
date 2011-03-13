@@ -31,7 +31,8 @@
 #import "GTMSenTestCase.h"
 #import "TFHpple.h"
 
-#define TEST_DOCUMENT_PATH @"UnitTesting/TestData/feed.rss"
+#define TEST_DOCUMENT_NAME @"feed"
+#define TEST_DOCUMENT_TYPE @"rss"
 
 @interface TFHppleXMLTest : GTMTestCase
 {
@@ -45,7 +46,8 @@
 
 - (void) setUp
 {
-	NSData * data = [NSData dataWithContentsOfFile:TEST_DOCUMENT_PATH];
+	NSString *testDataFilePath = [[NSBundle mainBundle] pathForResource: TEST_DOCUMENT_NAME ofType: TEST_DOCUMENT_TYPE];
+	NSData * data = [NSData dataWithContentsOfFile: testDataFilePath];
 	doc = [[TFHpple alloc] initWithXMLData:data];
 }
 
@@ -74,7 +76,7 @@
 {
 	TFHppleElement * e = [doc at:@"//item/title"];
 	
-	STAssertEqualObjects(e.content, @"Objective-C for Rubyists", nil);
+	STAssertEqualObjects([[[e childNodes] objectAtIndex: 0] content], @"Objective-C for Rubyists", nil);
 	STAssertEqualObjects(e.name, @"title", nil);
 }
 
@@ -85,7 +87,7 @@
 	
 	TFHppleElement * e = [elements objectAtIndex:0];
 	NSLog(@"%@" ,e);
-	STAssertEqualObjects(e.content, @"Objective-C for Rubyists", nil);
+	STAssertEqualObjects([[[e childNodes] objectAtIndex: 0] content], @"Objective-C for Rubyists", nil);
 }
 
 - (void) testAtSafelyReturnsNilIfEmpty

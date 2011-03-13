@@ -31,15 +31,16 @@
 
 
 @interface TFHppleElement : NSObject {
-	
+    
 @protected
 	NSString				*name;
 	NSString				*content;
 	NSMutableDictionary	*attributes;
-	NSMutableDictionary	*childNodes;
+
+    NSMutableArray	*childNodes;
 }
 
-// Returns this tag's text which is not surounded by another tag
+// Returns this tag's text which is not surounded by another tag.  Only text nodes have content.
 @property (nonatomic, copy) NSString *content;
 
 // Returns the name of the current tag, such as "h3".
@@ -52,8 +53,10 @@
  */
 @property (nonatomic, retain) NSMutableDictionary *attributes;
 
-// Returns a dictionary of child nodes, which can be accessed via their tag name
-@property (nonatomic, retain) NSMutableDictionary *childNodes;
+// Returns an array of child nodes.
+@property (nonatomic, retain) NSMutableArray *childNodes;
 
+// Reports whether the node is a text node.
+- (BOOL) isTextNode;
 
 @end

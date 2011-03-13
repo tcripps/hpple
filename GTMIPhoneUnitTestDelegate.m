@@ -41,6 +41,8 @@ static int MethodSort(const void *a, const void *b) {
 
 @implementation GTMIPhoneUnitTestDelegate
 
+@synthesize window;
+
 // Return YES if class is subclass (1 or more generations) of SenTestCase
 - (BOOL)isTestFixture:(Class)aClass {
   BOOL iscase = NO;

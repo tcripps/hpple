@@ -30,22 +30,30 @@
 
 #import "TFHppleElement.h"
 
-
 @implementation TFHppleElement
-
 
 @synthesize name;
 @synthesize content;
 @synthesize attributes;
 @synthesize childNodes;
 
-
+- (BOOL) isTextNode {
+    return [@"text" isEqualToString: name];
+}
 
 - (void) dealloc {
-	self.name = nil;
-	self.content= nil;
-	self.attributes = nil;
-	self.childNodes = nil;
+    [name release];
+	name = nil;
+    
+    [content release];
+	content= nil;
+    
+    [attributes release];
+	attributes = nil;
+    
+    [childNodes release];
+	childNodes = nil;
+    
 	[super dealloc];
 }
 
