@@ -106,8 +106,9 @@ TFHppleElement *HppleElementForNode(xmlNodePtr currentNode, TFHppleElement *pare
                 currentElement.childNodes = [NSMutableArray array];
             }
             BOOL isTextNode = [[currentElement name] isEqualToString: @"text"];
-            if ( (!isAttribute && !isTextNode) )
+            if ( !(isAttribute && isTextNode) ) {
                 [currentElement.childNodes addObject: childElement];
+            }
         }
         childNode = childNode->next;
 	}

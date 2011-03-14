@@ -35,9 +35,9 @@
 @protected
 	NSString				*name;
 	NSString				*content;
-	NSMutableDictionary	*attributes;
+	NSMutableDictionary     *attributes;
 
-    NSMutableArray	*childNodes;
+    NSMutableArray          *childNodes;
 }
 
 // Returns this tag's text which is not surounded by another tag.  Only text nodes have content.
@@ -58,5 +58,18 @@
 
 // Reports whether the node is a text node.
 - (BOOL) isTextNode;
+
+- (NSArray *) childNodesWithTagName: (NSString *)tagName;
+
+- (NSArray *) childNodesWithCriteria: (NSPredicate *)searchCriteria;
+
+/**
+ * Does some special handling of keyPaths that are looking for child nodes to allow asking
+ * for child nodes with a certain tag name and position.  E.g., a keyPath like:
+ *      "childNodes.li[0]"
+ * would return the first childNode with the tag name "li".  Keypaths without the index
+ * would return all child nodes matching the tag name.
+ */
+- (id) valueForKeyPath: (NSString *)keyPath;
 
 @end

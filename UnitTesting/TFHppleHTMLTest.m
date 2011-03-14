@@ -92,8 +92,8 @@
 {
 	TFHppleElement * e = [doc at:@"//a[@class='sponsor']"];
 	
-	STAssertEqualObjects([e.attributes.class description], @"NSCFDictionary", nil);
-	STAssertEqualObjects([e valueForKeyPath:@"attributes.href.content"], @"http://railsmachine.com/", nil);
+	STAssertTrue([e.attributes isKindOfClass: [NSDictionary class]], @"attributes is a NSDictionary");
+	STAssertEqualObjects([e valueForKeyPath:@"attributes.href"], @"http://railsmachine.com/", nil);
 }
 
 - (void) testLongKeyPath
@@ -102,7 +102,7 @@
 	
 	// First <div>
 	TFHppleElement * e = [a objectAtIndex:0];
-	STAssertEqualObjects([e valueForKeyPath:@"childNodes.div[2].childNodes.div[1].childNodes.ul.childNodes.li.childNodes.span[1].attributes.class.content"], @"price", nil);
+    STAssertEqualObjects([e valueForKeyPath:@"childNodes.div[2].childNodes.div[1].childNodes.ul[0].childNodes.li[0].childNodes.span[0].attributes.class"], @"price", nil);
 }
 
 //  doc.at("body")['onload']

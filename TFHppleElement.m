@@ -57,6 +57,52 @@
 	[super dealloc];
 }
 
+- (NSArray *) childNodesWithTagName: (NSString *)tagName {
+    NSPredicate *searchCriteria = [NSPredicate predicateWithFormat: @"name = %@", tagName];
+    return [self childNodesWithCriteria: searchCriteria];
+}
+
+- (NSArray *) childNodesWithCriteria: (NSPredicate *)searchCriteria {
+    return [childNodes filteredArrayUsingPredicate: searchCriteria];
+}
+
+- (id) valueForKeyPath: (NSString *)keyPath {
+    NSArray *keys = [keyPath componentsSeparatedByString: @"."];
+    int numKeys = [keys count];
+    if (numKeys == 1) {
+        return [super valueForKeyPath: keyPath];
+    } else {
+        id result = nil;
+        
+        if ([[keys objectAtIndex: 0] isEqualToString: @"childNodes"]) {
+            NSString *key = [keys objectAtIndex: 1];
+            NSUInteger index = 0;
+            NSRange r;
+            NSString *regEx = @"\[[0-9]+]";
+            r = [key rangeOfString: regEx options: NSRegularExpressionSearch];
+            if (r.location != NSNotFound) {
+                NSLog(@"index %@", [key substringWithRange: r]);
+                index = [[key substringWithRange: r] intValue];
+                key = [key substringWithRange: NSMakeRange(0, r.location - 1)];
+                result = [[self childNodesWithTagName: key] objectAtIndex: index];
+            } else {
+                NSLog(@"Not found.");
+                result = [self childNodesWithTagName: key];
+            }
+            
+            if (numKeys > 2) {
+                NSString *subKeyPath = [[keys subarrayWithRange: NSMakeRange(2, numKeys - 2)] componentsJoinedByString: @"."];
+                result = [result valueForKeyPath: subKeyPath];
+            }
+            
+        } else {
+            result = [super valueForKeyPath: keyPath];
+        }
+        
+        return result;
+    }
+}
+
 
 - (id)description {
 	NSString *description = [NSString stringWithFormat:@"<Name: %@, Content: %@, Attributes: %@, ChildNodes: %@>", name, content, attributes, childNodes];
